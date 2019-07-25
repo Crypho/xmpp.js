@@ -47,6 +47,7 @@ module.exports = plugin(
     onPubSubEventNotification(message) {
       const service = message.attrs.from
       const items = message.getChild('event').getChild('items')
+      if (!items) return
       const {node} = items.attrs
       const item = items.getChild('item')
       const retract = items.getChild('retract')

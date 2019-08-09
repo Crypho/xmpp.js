@@ -128,7 +128,11 @@ module.exports = plugin(
       if (rsm) {
         const rsmEl = xml('set', {xmlns: NS_RSM})
         for (const key of Object.keys(rsm)) {
-          rsmEl.c(key).t(rsm[key].toString())
+          if (rsm[key] === null) {
+            rsmEl.c(key)
+          } else {
+            rsmEl.c(key).t(rsm[key].toString())
+          }
         }
         stanza.up().cnode(rsmEl)
       }
